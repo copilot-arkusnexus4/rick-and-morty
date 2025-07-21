@@ -1,0 +1,28 @@
+// FavoritesCounter Component Styles
+
+// Contador de favoritos con borde directo
+.favoritesCounter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #595959;
+  padding: 12px 16px;
+  border: 1px solid #ffaa44;
+  border-radius: 8px;
+  background-color: rgba(255, 170, 68, 0.05);
+  
+  .starIcon {
+    color: #faad14;
+    font-size: 0.95rem;
+  }
+  
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+    padding: 16px 20px;
+    
+    .starIcon {
+      font-size: 1rem;
+    }
+  }
+} 

@@ -1,0 +1,203 @@
+// Toolbar principal - Fixed position
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 1000;
+  
+  // Tablet (768px+)
+  @media (min-width: 768px) {
+    height: 60px;
+    padding: 0 1.5rem;
+  }
+  
+  // Desktop (1024px+)
+  @media (min-width: 1024px) {
+    height: 64px;
+    padding: 0 2rem;
+  }
+}
+
+// Sección completa del toolbar (búsqueda, acciones y profile)
+.toolbarLeft {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex: 1;
+  border: 1px solid #ffaa44;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background-color: rgba(255, 170, 68, 0.05);
+  
+  @media (min-width: 768px) {
+    gap: 1rem;
+    padding: 10px 16px;
+  }
+}
+
+// Contenedor para búsqueda y acciones (lado izquierdo)
+.leftControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  @media (min-width: 768px) {
+    gap: 1rem;
+  }
+}
+
+// Grupo de búsqueda unificado (un tercio del contenedor)
+.searchGroup {
+  display: flex;
+  align-items: center;
+  width: 33%; // ← Un tercio del contenedor
+  min-width: 280px; // ← Mínimo para que sea usable
+  max-width: 350px; // ← Máximo controlado
+  
+  @media (min-width: 768px) {
+    min-width: 320px;
+    max-width: 400px;
+  }
+  
+  @media (min-width: 1024px) {
+    min-width: 350px;
+    max-width: 450px;
+  }
+}
+
+// Input de búsqueda - parte izquierda
+.searchInput {
+  flex: 1;
+  border-radius: 6px 0 0 6px !important;
+  border-right: 0 !important;
+  height: 32px !important;
+  
+  @media (min-width: 768px) {
+    height: 36px !important;
+  }
+}
+
+// Estilos específicos para TODOS los posibles elementos del input
+.searchInput :global(.ant-input-affix-wrapper),
+.searchInput :global(.ant-input-affix-wrapper-focused),
+.searchInput :global(.ant-input) {
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  border-radius: 6px 0 0 6px !important;
+  
+  @media (min-width: 768px) {
+    height: 36px !important;
+  }
+}
+
+// Input interno específico
+.searchInput :global(.ant-input-affix-wrapper) :global(.ant-input) {
+  height: 32px !important;
+  line-height: normal !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  text-align: left !important;
+  
+  @media (min-width: 768px) {
+    height: 36px !important;
+  }
+}
+
+// Botón de búsqueda - parte derecha (color azul claro con ícono contrastante)
+.searchButton {
+  min-width: 40px;
+  height: 32px !important;
+  border-radius: 0 6px 6px 0 !important;
+  flex-shrink: 0;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #c7d8e8 !important;
+  border-color: #c7d8e8 !important;
+  
+  // Ícono de búsqueda con contraste
+  :global(.anticon) {
+    color: #2c3e50 !important; // Azul marino oscuro para contraste
+  }
+  
+  &:hover {
+    background-color: #b8cce0 !important;
+    border-color: #b8cce0 !important;
+    
+    :global(.anticon) {
+      color: #1a252f !important; // Azul aún más oscuro en hover
+    }
+  }
+  
+  &:focus, &:active {
+    background-color: #b8cce0 !important;
+    border-color: #b8cce0 !important;
+    box-shadow: 0 0 0 2px rgba(199, 216, 232, 0.3) !important;
+    
+    :global(.anticon) {
+      color: #1a252f !important;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    min-width: 44px;
+    height: 36px !important;
+  }
+}
+
+// Dropdown de acciones (estilos por defecto)
+.actionsDropdown {
+  .ant-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  @media (max-width: 767px) {
+    .ant-btn {
+      font-size: 0.875rem;
+      padding: 4px 8px;
+    }
+  }
+}
+
+// Sección de usuario (profile y logout)
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  
+  @media (max-width: 767px) {
+    gap: 0.25rem;
+  }
+}
+
+// Nombre de usuario
+.userName {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #595959;
+} 

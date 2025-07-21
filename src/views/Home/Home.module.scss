@@ -1,0 +1,681 @@
+.container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #fafafa;
+}
+
+
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 1000;
+  
+  // Desktop (1024px+)
+  @media (min-width: 1024px) {
+    height: 64px;
+    padding: 0 2rem;
+  }
+}
+
+// Sección completa del toolbar (búsqueda, acciones y profile)
+.toolbarLeft {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex: 1;
+  border: 1px solid #ffaa44;
+  border-radius: 8px;
+  padding: 8px 12px;
+  
+  @media (min-width: 768px) {
+    gap: 1rem;
+    padding: 10px 16px;
+  }
+}
+
+// Contenedor para búsqueda y acciones (lado izquierdo)
+.leftControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  @media (min-width: 768px) {
+    gap: 1rem;
+  }
+}
+
+// Grupo de búsqueda unificado (un tercio del contenedor)
+.searchGroup {
+  display: flex;
+  align-items: center;
+  width: 33%; // ← Un tercio del contenedor
+  min-width: 280px; // ← Mínimo para que sea usable
+  max-width: 350px; // ← Máximo controlado
+  
+  @media (min-width: 768px) {
+    min-width: 320px;
+    max-width: 400px;
+  }
+  
+  @media (min-width: 1024px) {
+    min-width: 350px;
+    max-width: 450px;
+  }
+}
+
+// Input de búsqueda - parte izquierda
+.searchInput {
+  flex: 1;
+  border-radius: 6px 0 0 6px !important;
+  border-right: 0 !important;
+  height: 32px !important;
+  
+  @media (min-width: 768px) {
+    height: 36px !important;
+  }
+}
+
+// Wrapper principal del input
+.searchInput :global(.ant-input-affix-wrapper) {
+  height: 32px !important;
+  border-radius: 6px 0 0 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  
+  @media (min-width: 768px) {
+    height: 36px !important;
+  }
+}
+
+// Input interno MUY específico
+.searchInput :global(.ant-input-affix-wrapper) :global(.ant-input) {
+  height: 32px !important;
+  line-height: normal !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  text-align: left !important;
+  
+  @media (min-width: 768px) {
+    height: 36px !important;
+  }
+}
+
+// Botón de búsqueda - parte derecha (color azul claro con ícono contrastante)
+.searchButton {
+  min-width: 40px;
+  height: 32px !important;
+  border-radius: 0 6px 6px 0 !important;
+  flex-shrink: 0;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #c7d8e8 !important;
+  border-color: #c7d8e8 !important;
+  
+  // Ícono de búsqueda con contraste
+  :global(.anticon) {
+    color: #2c3e50 !important; // Azul marino oscuro para contraste
+  }
+  
+  &:hover {
+    background-color: #b8cce0 !important;
+    border-color: #b8cce0 !important;
+    
+    :global(.anticon) {
+      color: #1a252f !important; // Azul aún más oscuro en hover
+    }
+  }
+  
+  &:focus, &:active {
+    background-color: #b8cce0 !important;
+    border-color: #b8cce0 !important;
+    box-shadow: 0 0 0 2px rgba(199, 216, 232, 0.3) !important;
+    
+    :global(.anticon) {
+      color: #1a252f !important;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    min-width: 44px;
+    height: 36px !important;
+  }
+}
+
+// Botón limpiar búsqueda (ya no se usa - integrado en input)
+// .clearButton {
+//   margin-left: 8px;
+//   font-size: 12px;
+//   color: #666;
+//   border-color: #d9d9d9;
+// }
+
+// Dropdown de acciones (estilos por defecto)
+.actionsDropdown {
+  .ant-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  // @media (max-width: 767px) {
+  //   .ant-btn {
+  //     font-size: 0.875rem;
+  //     padding: 4px 8px;
+  //   }
+  // }
+}
+
+.content {
+  margin-top: 56px;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  
+  // Desktop (1024px+)
+  @media (min-width: 1024px) {
+    margin-top: 64px;
+    padding: 2rem;
+  }
+  
+  // Pantallas muy grandes - Usar todo el ancho
+  @media (min-width: 1400px) {
+    padding: 2rem;
+  }
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: #f5f5f5;
+  }
+  
+  @media (min-width: 768px) {
+    padding: 8px 12px;
+    gap: 0.75rem;
+  }
+}
+
+.userName {
+  font-weight: 500;
+  color: #262626;
+  font-size: 0.875rem;
+  
+  // Ocultar email en pantallas muy pequeñas
+  @media (max-width: 480px) {
+    display: none;
+  }
+  
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+}
+  
+  .title {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #262626;
+    width: 100%;
+    
+    @media (min-width: 768px) {
+      margin: 0 0 1.5rem 0;
+      font-size: 1.5rem;
+    }
+  }
+
+  // Contenedor de tabla con header integrado y borde naranja
+  .tableContainer {
+    width: 100%;
+    border: 1px solid #ffaa44;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 170, 68, 0.02);
+  }
+
+  // Header de la tabla con título (compacto y muy ajustado)
+  .tableHeader {
+    background-color: #c7d8e8;
+    padding: 0.5rem 1.5rem 0.5rem 0.5rem; // Padding izquierdo muy reducido
+    border-bottom: 1px solid #ffaa44;
+    border-radius: 8px 8px 0 0; // Solo bordes superiores redondeados
+  }
+  
+  // Footer de la tabla (paginador dentro del borde - alineado derecha)
+  .tableFooter {
+    padding: 16px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  // Título dentro del header de la tabla (más pequeño)
+  .tableTitle {
+    margin: 0;
+    font-size: 1rem; // Tamaño reducido
+    font-weight: 600;
+    color: #2c3e50;
+    line-height: 1.3;
+  }
+  
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+  }
+  
+  .star {
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+  .star.filled { color: gold; }
+  .star.empty  { color: lightgray; }
+  
+  
+  .cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .cardAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  
+  .cardInfo {
+    flex: 1;
+    min-width: 0; // Para truncar texto si es necesario
+  }
+  
+  .cardName {
+    margin: 0 0 4px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #262626;
+    line-height: 1.2;
+  }
+  
+  .cardId {
+    font-size: 0.8rem;
+    color: #8c8c8c;
+  }
+  
+  .cardDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .cardDetail {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #595959;
+    
+    .anticon {
+      font-size: 0.875rem;
+      color: #8c8c8c;
+    }
+  }
+  
+  .table {
+    width: 100%;
+    
+    :global(.ant-table-container) {
+      border: none; // Sin borde porque está dentro del tableContainer
+      width: 100%;
+      border-radius: 0 !important; // Sin border radius en el contenedor
+    }
+    
+    :global(.ant-table) {
+      width: 100% !important;
+      table-layout: auto; // Auto para distribución flexible
+      border-radius: 0 !important; // Sin border radius porque está integrado
+    }
+
+    // Eliminar border-radius del header específico
+    :global(.ant-table-header) {
+      border-radius: 0 !important;
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+    }
+    
+    // Estilos para el scroll vertical
+    :global(.ant-table-body) {
+      max-height: 560px;
+      overflow-y: auto;
+      
+      // Personalizar scrollbar
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+        
+        &:hover {
+          background: #a1a1a1;
+        }
+      }
+    }
+    
+    // Header de la tabla (columnas)
+    :global(.ant-table-thead > tr > th) {
+      padding: 12px 16px;
+      text-align: left;
+      background-color: #e3e3e3 !important;
+      border-bottom: 1px solid #d0d0d0;
+      border-top: none; // Sin borde superior para fusionar con header principal
+      border-radius: 0 !important; // Sin border radius para unirse con el header del título
+      font-weight: 600;
+      
+      // Avatar (primera columna)
+      &:first-child {
+        text-align: center;
+        border-top-left-radius: 0 !important;
+      }
+      
+      // ID (segunda columna)
+      &:nth-child(2) {
+        text-align: center;
+      }
+      
+      // Favorites (quinta columna)
+      &:nth-child(5) {
+        text-align: center;
+      }
+      
+      // Created Date (última columna)
+      &:last-child {
+        text-align: center;
+        border-top-right-radius: 0 !important;
+      }
+    }
+    
+    // Celdas del cuerpo de la tabla
+    :global(.ant-table-tbody > tr > td) {
+      padding: 12px 16px;
+      text-align: left;
+      
+      // Avatar (primera columna)
+      &:first-child {
+        text-align: center;
+      }
+      
+      // ID (segunda columna)
+      &:nth-child(2) {
+        text-align: center;
+      }
+      
+      // Favorites (quinta columna)
+      &:nth-child(5) {
+        text-align: center;
+      }
+      
+      // Created Date (última columna)
+      &:last-child {
+        text-align: center;
+      }
+    }
+    
+    :global(.ant-table-tbody > tr > td) {
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    // Bordes redondeados en la última fila de la tabla
+    :global(.ant-table-tbody > tr:last-child > td) {
+      &:first-child {
+        border-bottom-left-radius: 8px !important;
+      }
+      
+      &:last-child {
+        border-bottom-right-radius: 8px !important;
+      }
+    }
+    
+    // Colores alternados para filas (zebra striping)
+    :global(.ant-table-tbody > tr:nth-child(odd)) {
+      background-color: #ffffff;
+    }
+    
+    :global(.ant-table-tbody > tr:nth-child(even)) {
+      background-color: #f0f0f0;
+    }
+    
+    // Eliminar transiciones en filas para hover estable
+    :global(.ant-table-tbody > tr) {
+      transition: none !important;
+    }
+    
+    :global(.ant-table-tbody > tr > td) {
+      transition: none !important;
+    }
+    
+    :global(.ant-table-tbody > tr:hover) {
+      background-color: #e6f7ff !important; // Color hover más prominente
+      transition: none !important; // Sin transición para hover estable
+    }
+    
+    :global(.ant-table-tbody > tr:hover > td) {
+      background-color: #e6f7ff !important; // Asegurar que las celdas mantengan el color
+      transition: none !important;
+    }
+    
+    // Override para cualquier animación de Ant Design
+    :global(.ant-table-tbody > tr:hover),
+    :global(.ant-table-tbody > tr:hover > td) {
+      animation: none !important;
+      transition-delay: 0s !important;
+      transition-duration: 0s !important;
+    }
+  }
+  
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    margin-top: 0.75rem;
+    margin-bottom: 0; // Sin espacio inferior para pegarlo al contador
+    border: 1px solid #ffaa44;
+    border-radius: 8px;
+    background-color: rgba(255, 170, 68, 0.05);
+  }
+  
+  .paginationSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  // Contenedor para posicionamiento del contador
+  .favoritesContainer {
+    margin-top: 0; // Completamente pegado a la tabla
+    display: flex;
+    justify-content: flex-end; // Alineado a la derecha
+    align-items: center;
+  }
+
+  // Contador de favoritos (ahora componente separado - estilos movidos a FavoritesCounter.module.scss)
+
+// Estilos para el selector de página con tema naranja
+:global(.page-size-select) {
+  // Estado normal
+  .ant-select-selector {
+    background-color: #ffffff !important;
+    border-color: #ffaa44 !important;
+    box-shadow: none !important;
+    transition: none !important;
+  }
+  
+  // Estado hover - borde naranja más intenso
+  &:hover .ant-select-selector {
+    background-color: rgba(255, 170, 68, 0.05) !important;
+    border-color: #ff9922 !important;
+    box-shadow: none !important;
+  }
+  
+  // Estado focused - borde naranja más intenso
+  &.ant-select-focused .ant-select-selector {
+    background-color: rgba(255, 170, 68, 0.08) !important;
+    border-color: #ff9922 !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+  
+  // Estado open - sin cambios
+  &.ant-select-open .ant-select-selector {
+    background-color: #ffffff !important;
+    border-color: #d9d9d9 !important;
+    box-shadow: none !important;
+  }
+  
+  // Eliminar todas las transiciones y animaciones
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  // Arrow sin cambios
+  .ant-select-arrow {
+    color: #bfbfbf !important;
+    
+    &:hover {
+      color: #bfbfbf !important;
+    }
+  }
+  
+  // Input sin efectos
+  .ant-select-selection-search-input {
+    cursor: pointer !important;
+  }
+  
+  // TEXTO - mantener color constante en todos los estados con máxima especificidad
+  .ant-select-selector .ant-select-selection-item {
+    color: #000000 !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  
+  &:hover .ant-select-selector .ant-select-selection-item {
+    color: #000000 !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  
+  &.ant-select-focused .ant-select-selector .ant-select-selection-item {
+    color: #000000 !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  
+  &.ant-select-open .ant-select-selector .ant-select-selection-item {
+    color: #000000 !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  
+  // Placeholder text también
+  .ant-select-selector .ant-select-selection-placeholder {
+    color: #000000 !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  
+  // Override para el span interno también
+  .ant-select-selector .ant-select-selection-item span {
+    color: #000000 !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  
+  // Estados de focus/disabled/etc
+  &.ant-select-disabled .ant-select-selector .ant-select-selection-item {
+    color: #000000 !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}
+
+// Estilos globales para el dropdown del select
+:global(.ant-select-dropdown) {
+  .ant-select-item {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .ant-select-item-option {
+    &:hover {
+      background-color: #f5f5f5 !important;
+    }
+    
+    &.ant-select-item-option-selected {
+      background-color: #e6f7ff !important;
+    }
+  }
+}
+
+// Override global súper específico para la clase page-size-select
+:global(.page-size-select.ant-select .ant-select-selector .ant-select-selection-item) {
+  color: #000000 !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+:global(.page-size-select.ant-select:hover .ant-select-selector .ant-select-selection-item) {
+  color: #000000 !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+:global(.page-size-select.ant-select.ant-select-focused .ant-select-selector .ant-select-selection-item) {
+  color: #000000 !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+:global(.page-size-select.ant-select.ant-select-open .ant-select-selector .ant-select-selection-item) {
+  color: #000000 !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
