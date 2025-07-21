@@ -10,7 +10,7 @@ Make sure you have the following installed:
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/copilot-arkusnexus4/challenge.git
+git clone https://github.com/copilot-arkusnexus4/rick-and-morty.git
 cd challenge
 ```
 
